@@ -1,4 +1,4 @@
-<%namespace file="helper.html" import="nav" />\
+<%namespace file="helper.html" import="menu" />\
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
 <body>
 
 <div class="ui main text container">
-  ${nav(slug)}
+  ${menu(slug, ['Home', 'About', 'Resume'])}
   <h1>${self.attr.title}</h1>
   ${next.body()}
 </div>
