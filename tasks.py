@@ -13,6 +13,7 @@ IMPORTS = [
 
 lookup = TemplateLookup(directories=['templates'])
 
+bottle.debug(True)
 app = bottle.Bottle()
 
 if SITE != '/':

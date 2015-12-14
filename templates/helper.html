@@ -3,18 +3,16 @@
   <%
     pages = ['Home', 'About', 'Resume']
   %>
-  <ul class="nav nav-pills" >
-  % for page in pages:
-    <%
-      link = page.lower() + '/' if page != 'Home' else ''
-      if page == 'Home':
-        active = slug == ''
-      else:
-        active = slug == page.lower()
-    %>
-    <li class="nav-item">
-      <a class="nav-link ${'active' if active else ''}" href="${site}${link}">${page}</a>
-    </li>
-  % endfor
-  </ul>
+  <div class="ui menu" >
+    % for page in pages:
+      <%
+        link = page.lower() + '/' if page != 'Home' else ''
+        if page == 'Home':
+         active = slug == ''
+        else:
+         active = slug == page.lower()
+      %>
+      <a class="item ${'active' if active else ''}" href="${site}${link}">${page}</a>
+    % endfor
+  </div>
 </%def>
