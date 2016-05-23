@@ -15,21 +15,10 @@ pip install -r requirements.txt
 
 There is a minor amount of configuration you'll have to do inside `tasks.py`.
 
-To serve the site:
+## Commands
 
-```
-invoke serve
-```
-
-To build the site:
-
-```
-invoke build
-```
-
-To publish the site to GitHub Pages:
-
-```
-invoke publish
-```
-static-site-boilerplate
+| **Command** | **Description** |
+|-------------|-----------------|
+| `invoke serve` | Serve the site at localhost:8000 |
+| `ionic build` | Build the site |
+| `ionic publish` | Publish the site to GitHub Pages |
