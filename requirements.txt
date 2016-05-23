@@ -6,4 +6,4 @@ livereload
 Mako
 markdown2
 pathlib
-pyaml
+PyYAML

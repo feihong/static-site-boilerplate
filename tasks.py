@@ -1,9 +1,11 @@
 import os.path as op
+import re
+from pathlib import Path, PurePath
 from mako.template import Template
 from mako.lookup import TemplateLookup
 import bottle
+import yaml
 from invoke import run, task
-from pathlib import Path, PurePath
 
 
 SITE = '/static-site-boilerplate/'
@@ -82,8 +84,15 @@ def get_slug(path):
 
 
 def generate(path):
-    template = Template(open(path).read(), lookup=lookup, imports=IMPORTS)
-    return template.render(site=SITE, slug=get_slug(path))
+    with open(path) as fp:
+        markup = fp.read()
+        match = re.search(r'\n={3,}\n', markup)
+        if match:
+            start, end = match.span()
+            data = yaml.load(markup[0:start])
+            markup = markup[end:]
+        template = Template(markup, lookup=lookup, imports=IMPORTS)
+        return template.render(site=SITE, slug=get_slug(path), **data)
 
 
 def copy_or_generate(src, dest):
