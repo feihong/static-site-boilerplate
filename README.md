@@ -19,6 +19,6 @@ There is a minor amount of configuration you'll have to do inside `tasks.py`.
 
 | **Command** | **Description** |
 |-------------|-----------------|
-| `invoke serve` | Serve the site at localhost:8000 |
-| `ionic build` | Build the site |
-| `ionic publish` | Publish the site to GitHub Pages |
+| `inv serve` | Serve the site at localhost:8000 |
+| `inv build` | Build the site |
+| `inv publish` | Publish the site to GitHub Pages |

@@ -3,7 +3,7 @@ from mako.template import Template
 from mako.lookup import TemplateLookup
 import bottle
 from invoke import run, task
-from pathlib2 import Path, PurePath
+from pathlib import Path, PurePath
 
 
 SITE = '/static-site-boilerplate/'
