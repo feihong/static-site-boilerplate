@@ -75,9 +75,11 @@ def get_file(path):
     result = Path('site') / path
     if result.is_file():
         return result
-    index_file = result / 'index.html'
-    if result.is_dir() and index_file.is_file():
-        return index_file
+
+    for format in FORMATS:
+        index_file = result / ('index' + format)
+        if result.is_dir() and index_file.is_file():
+            return index_file
     return None
 
 
@@ -112,13 +114,20 @@ def split_markup(markup):
 
 def generate(path):
     data, template_code = split_markup(path.read_text())
-    template = Template(template_code, lookup=lookup, imports=IMPORTS)
-    final_markup = template.render(site=SITE, slug=get_slug(path), **data)
+    data.update(site=SITE, slug=get_slug(path))
+    content = render(template_code, data)
     if path.suffix == '.rst':
-        return rst(final_markup)
-    if path.suffix == 'md':
-        return markdown(final_markup)
-    return final_markup
+        html = rst(content)
+        return render('<%inherit file="base.html" />\n' + html, data)
+    if path.suffix == '.md':
+        html = markdown(content)
+        return render('<%inherit file="base.html" />\n' + html, data)
+    return content
+
+
+def render(template_code, data):
+    template = Template(template_code, lookup=lookup, imports=IMPORTS)
+    return template.render(**data)
 
 
 def copy_or_generate(src, dest):
