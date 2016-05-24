@@ -2,7 +2,7 @@ title: Resume
 
 ===
 
-This is my resume!
+This is my resume! It was written using `ReStructuredText <http://docutils.sourceforge.net/rst.html>`_.
 
 Job 1
 -----
@@ -14,4 +14,4 @@ Job 1
 Job 2
 -----
 
-Herding cats so hard
+Herding cats is so hard

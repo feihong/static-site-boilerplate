@@ -1,4 +1,4 @@
-<%namespace file="helper.html" import="menu" />\
+<%namespace file="helper.html" name="helper" />\
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +12,13 @@
 <body>
 
 <div class="ui main text container">
-  ${menu(slug, ['Home', 'About', 'Resume'])}
+  <%helper:menu slug="${slug}">
+    Home: home
+    About: about
+    Resume: resume
+    Jade: jade-examples
+  </%helper:menu>
+  
   <h1>${title}</h1>
   ${next.body()}
 </div>

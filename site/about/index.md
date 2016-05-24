@@ -4,6 +4,14 @@ title: About
 
 Hi, my name is **Feihong Hsu**, and you're looking at my website.
 
+This was written in [Markdown](https://daringfireball.net/projects/markdown/).
+
+The following list was generated using a Mako for loop:
+
+% for i in range(1, 6):
+- Item ${i}
+% endfor
+
 ### Some hipster ipsum
 
 Synth organic brooklyn, meh master cleanse microdosing cronut vegan church-key. Pitchfork health goth beard banh mi 90's, locavore venmo pug tilde pop-up. YOLO you probably haven't heard of them heirloom gentrify sustainable. Meditation retro bushwick cliche hashtag raw denim, hella blog kickstarter kombucha PBR&B meggings. Selvage tacos truffaut, taxidermy beard occupy bitters mumblecore. Distillery celiac retro tofu church-key banh mi, organic fingerstache mumblecore typewriter listicle single-origin coffee ethical cliche. Cronut street art four dollar toast kitsch four loko umami.

@@ -4,6 +4,7 @@ from pathlib2 import Path
 from mako.template import Template
 from mako.lookup import TemplateLookup
 import bottle
+from pyjade.ext.mako import preprocessor as jade2mako
 from invoke import run, task
 from filters import markdown, rst
 
@@ -12,7 +13,7 @@ SITE = '/static-site-boilerplate/'
 IMPORTS = [
     'from filters import markdown, rst'
 ]
-FORMATS = ('.html', '.rst', '.md')
+FORMATS = ('.html', '.rst', '.md', '.jade')
 
 lookup = TemplateLookup(directories=['templates'])
 
@@ -33,10 +34,11 @@ def page(path=''):
         with open('site/404.html') as fp:
             return fp.read()
 
-    if file_.suffix not in FORMATS:
-        return bottle.static_file(path, root='site')
+    if file_.suffix in FORMATS:
+        return generate(file_)
 
-    return generate(file_)
+    return bottle.static_file(path, root='site')
+
 
 
 @task
@@ -85,7 +87,7 @@ def get_file(path):
 
 def get_slug(path):
     if str(path) == 'site/index.html':
-        return ''
+        return 'home'
     elif path.stem == 'index':
         return str(path.parent.name)
     else:

@@ -6,4 +6,5 @@ livereload
 Mako
 markdown2
 pathlib2
+pyjade
 PyYAML

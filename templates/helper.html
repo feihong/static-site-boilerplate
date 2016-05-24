@@ -1,15 +1,16 @@
 
-<%def name="menu(slug, pages)">
-  <div class="ui menu" >
-  % for page in pages:
-    <%
-      link = page.lower() + '/' if page != 'Home' else ''
-      if page == 'Home':
-        active = slug == ''
-      else:
-        active = slug == page.lower()
-    %>
-    <a class="item ${'active' if active else ''}" href="${site}${link}">${page}</a>
+<%def name="menu(slug)">
+  <%
+    body = capture(caller.body).strip()
+    pairs = [line.split(':') for line in body.splitlines()]
+  %>
+  <div class='ui menu'>
+  % for title, link in pairs:
+    <% link = link.strip() %>
+    <a class='item ${'active' if slug==link else ''}'
+       href='${site}${link}'>
+       ${title}
+    </a>
   % endfor
   </div>
 </%def>
