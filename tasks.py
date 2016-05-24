@@ -84,7 +84,7 @@ def get_file(path):
 def get_slug(path):
     if str(path) == 'site/index.html':
         return ''
-    elif path.suffix == 'index.html':
+    elif path.stem == 'index':
         return str(path.parent.name)
     else:
         return str(path.stem)
