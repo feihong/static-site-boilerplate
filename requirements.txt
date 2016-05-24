@@ -5,5 +5,5 @@ invoke
 livereload
 Mako
 markdown2
-pathlib
+pathlib2
 PyYAML

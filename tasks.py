@@ -1,17 +1,18 @@
 import os.path as op
 import re
-from pathlib import Path, PurePath
+from pathlib2 import Path
 from mako.template import Template
 from mako.lookup import TemplateLookup
 import bottle
-import yaml
 from invoke import run, task
+from filters import markdown, rst
 
 
 SITE = '/static-site-boilerplate/'
 IMPORTS = [
     'from filters import markdown, rst'
 ]
+FORMATS = ('.html', '.rst', '.md')
 
 lookup = TemplateLookup(directories=['templates'])
 
@@ -28,8 +29,13 @@ if SITE != '/':
 @app.route(SITE + '<path:path>')
 def page(path=''):
     file_ = get_file(path)
-    if not file_.endswith('.html'):
+    if file_ is None:
+        with open('site/404.html') as fp:
+            return fp.read()
+
+    if file_.suffix not in FORMATS:
         return bottle.static_file(path, root='site')
+
     return generate(file_)
 
 
@@ -66,41 +72,62 @@ def publish():
 
 
 def get_file(path):
-    result = op.join('site', path)
-    if op.isfile(result):
+    result = Path('site') / path
+    if result.is_file():
         return result
-    if op.isdir(result) and op.isfile(op.join(result, 'index.html')):
-        return op.join(result, 'index.html')
-    return 'site/404.html'
+    index_file = result / 'index.html'
+    if result.is_dir() and index_file.is_file():
+        return index_file
+    return None
 
 
 def get_slug(path):
-    if path == 'site/index.html':
+    if str(path) == 'site/index.html':
         return ''
-    elif path.endswith('index.html'):
-        return str(PurePath(path).parent.name)
+    elif path.suffix == 'index.html':
+        return str(path.parent.name)
     else:
-        return str(PurePath(path).stem)
+        return str(path.stem)
+
+
+def split_markup(markup):
+    """
+    Given some markup, return a tuple containing the decoded data and the
+    template code.
+
+    """
+    import yaml
+
+    match = re.search(r'\n={3,}\n', markup)
+    if match:
+        start, end = match.span()
+        data = yaml.load(markup[0:start])
+        template_code = markup[end:]
+    else:
+        data = None
+        template_code = markup
+
+    return data, template_code
 
 
 def generate(path):
-    with open(path) as fp:
-        markup = fp.read()
-        match = re.search(r'\n={3,}\n', markup)
-        if match:
-            start, end = match.span()
-            data = yaml.load(markup[0:start])
-            markup = markup[end:]
-        template = Template(markup, lookup=lookup, imports=IMPORTS)
-        return template.render(site=SITE, slug=get_slug(path), **data)
+    data, template_code = split_markup(path.read_text())
+    template = Template(template_code, lookup=lookup, imports=IMPORTS)
+    final_markup = template.render(site=SITE, slug=get_slug(path), **data)
+    if path.suffix == '.rst':
+        return rst(final_markup)
+    if path.suffix == 'md':
+        return markdown(final_markup)
+    return final_markup
 
 
 def copy_or_generate(src, dest):
     import shutil
     if not dest.exists():
         dest.parent.mkdir(parents=True, exist_ok=True)
-    if src.suffix == '.html':
+    if src.suffix in FORMATS:
+        dest = dest.parent / (dest.stem + '.html')
         with dest.open('w') as fp:
-            fp.write(generate(str(src)))
+            fp.write(generate(src))
     else:
         shutil.copy(str(src), str(dest))
