@@ -72,20 +72,26 @@ def publish():
 
 
 def get_file(path):
-    result = Path('site') / path
-    if result.is_file():
-        return result
+    filepath = Path('site') / path
+    if filepath.is_file():
+        return filepath
 
     for format in PAGE_FORMATS:
-        index_file = result / ('index' + format)
-        if result.is_dir() and index_file.is_file():
+        index_file = filepath / ('index' + format)
+        if filepath.is_dir() and index_file.is_file():
             return index_file
+
+    if filepath.suffix == '.css':
+        style_file = filepath.parent / (filepath.stem + '.scss')
+        if style_file.exists():
+            return style_file
+
     return None
 
 
 def get_slug(path):
     if str(path) == 'site/index.html':
-        return 'home'
+        return '/'
     elif path.stem == 'index':
         return str(path.parent.name)
     else:

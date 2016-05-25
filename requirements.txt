@@ -2,6 +2,7 @@ bottle
 docutils
 ghp-import
 invoke
+libsass
 livereload
 Mako
 markdown2

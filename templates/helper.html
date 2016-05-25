@@ -7,10 +7,11 @@
   <div class='ui menu'>
   % for title, link in pairs:
     <%
-      item_slug = link.strip()
-      link = '' if item_slug == 'home' else item_slug
+      link = link.strip()
+      if link == '/':
+        link = ''
     %>
-    <a class='item ${'active' if slug==item_slug else ''}'
+    <a class='item'
        href='${site}${link}'>
        ${title}
     </a>
