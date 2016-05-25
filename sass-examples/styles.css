@@ -1,0 +1,11 @@
+.declarations .warning {
+  background-color: lightcoral; }
+
+.declarations .info {
+  background-color: lavender; }
+
+.declarations .tip {
+  background-color: palegreen; }
+
+span.highlight {
+  background-color: lemonchiffon; }
