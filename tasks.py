@@ -4,7 +4,6 @@ from pathlib2 import Path
 from mako.template import Template
 from mako.lookup import TemplateLookup
 import bottle
-from pyjade.ext.mako import preprocessor as jade2mako
 from invoke import run, task
 from filters import markdown, rst
 
@@ -108,7 +107,7 @@ def split_markup(markup):
         data = yaml.load(markup[0:start])
         template_code = markup[end:]
     else:
-        data = None
+        data = {}
         template_code = markup
 
     return data, template_code
@@ -117,19 +116,37 @@ def split_markup(markup):
 def generate(path):
     data, template_code = split_markup(path.read_text())
     data.update(site=SITE, slug=get_slug(path))
+
+    if path.suffix == '.jade':
+        return render_jade(template_code, data)
+
     content = render(template_code, data)
+
     if path.suffix == '.rst':
         html = rst(content)
         return render('<%inherit file="base.html" />\n' + html, data)
+
     if path.suffix == '.md':
         html = markdown(content)
         return render('<%inherit file="base.html" />\n' + html, data)
+
     return content
 
 
 def render(template_code, data):
     template = Template(template_code, lookup=lookup, imports=IMPORTS)
     return template.render(**data)
+
+
+def render_jade(template_code, data):
+    from pyjade.ext.mako import preprocessor
+    mako_code = preprocessor(template_code)
+    index = mako_code.index('%>') + 2
+    preamble = mako_code[:index]
+    body = mako_code[index:]
+    return render(
+        preamble + '\n<%inherit file="base.html" />\n' + body,
+        data)
 
 
 def copy_or_generate(src, dest):
