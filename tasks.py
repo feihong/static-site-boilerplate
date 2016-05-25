@@ -12,7 +12,7 @@ SITE = '/static-site-boilerplate/'
 IMPORTS = [
     'from filters import markdown, rst'
 ]
-FORMATS = ('.html', '.rst', '.md', '.jade')
+PAGE_FORMATS = ('.html', '.rst', '.md', '.jade')
 
 lookup = TemplateLookup(directories=['templates'])
 
@@ -33,8 +33,8 @@ def page(path=''):
         with open('site/404.html') as fp:
             return fp.read()
 
-    if file_.suffix in FORMATS:
-        return generate(file_)
+    if file_.suffix in PAGE_FORMATS:
+        return render_page(file_)
 
     return bottle.static_file(path, root='site')
 
@@ -45,7 +45,7 @@ def serve():
     from livereload import Server
     from livereload.watcher import Watcher
     watcher = Watcher()
-    watcher.watch('site', ignore=lambda p: p.endswith('.babel'))
+    watcher.watch('site')
     watcher.watch('templates')
     server = Server(app, watcher)
     server.serve(port=8000)
@@ -76,7 +76,7 @@ def get_file(path):
     if result.is_file():
         return result
 
-    for format in FORMATS:
+    for format in PAGE_FORMATS:
         index_file = result / ('index' + format)
         if result.is_dir() and index_file.is_file():
             return index_file
@@ -112,7 +112,7 @@ def split_markup(markup):
     return data, template_code
 
 
-def generate(path):
+def render_page(path):
     data, template_code = split_markup(path.read_text())
     data.update(site=SITE, slug=get_slug(path))
 
@@ -152,10 +152,10 @@ def copy_or_generate(src, dest_dir):
     import shutil
     if not dest_dir.exists():
         dest_dir.mkdir(parents=True, exist_ok=True)
-    if src.suffix in FORMATS:
+    if src.suffix in PAGE_FORMATS:
         dest = dest_dir / (src.stem + '.html')
         with dest.open('w') as fp:
-            fp.write(generate(src))
+            fp.write(render_page(src))
         return dest
     else:
         shutil.copy(str(src), str(dest_dir))
