@@ -1,10 +1,31 @@
 title: Jade Examples
 greeting: Salutations
 guest_name: Lionel S. Bartolo
+widget_count: 666
 
 ===
-h2 Whoa, great!
+
+h2 Variable interpolation
+
+p #{greeting}, #{guest_name}! Please make yourself at home!
+
+h2 Tag interpolation
 
 p This example was made with #[a(href='http://jade-lang.com') Jade]!
 
-p #{greeting}, #{guest_name}! Please make yourself at home! 
+h2 Unbuffered code
+
+ul
+  - for i in range(65, 70)
+    li item #{chr(i)}
+
+
+- animals = ['anaconda', 'bear', 'capybara', 'dingo']
+
+ol
+  each animal in animals
+    li= animal
+
+h2 Buffered code
+
+p= 'We made %d widgets today!' % widget_count
