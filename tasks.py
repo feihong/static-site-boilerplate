@@ -1,6 +1,7 @@
 import os.path as op
 import re
 from pathlib2 import Path
+import shutil
 from mako.template import Template
 from mako.lookup import TemplateLookup
 import bottle
@@ -164,14 +165,20 @@ def render_stylesheet(path):
 
 
 def copy_or_generate(src, dest_dir):
-    import shutil
     if not dest_dir.exists():
         dest_dir.mkdir(parents=True, exist_ok=True)
+
     if src.suffix in PAGE_FORMATS:
         dest = dest_dir / (src.stem + '.html')
         with dest.open('w') as fp:
             fp.write(render_page(src))
         return dest
-    else:
-        shutil.copy(str(src), str(dest_dir))
-        return dest_dir / src.name
+
+    if src.suffix == '.scss':
+        dest = dest_dir / (src.stem + '.css')
+        with dest.open('w') as fp:
+            fp.write(render_stylesheet(src))
+        return dest
+
+    shutil.copy(str(src), str(dest_dir))
+    return dest_dir / src.name
