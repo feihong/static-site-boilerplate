@@ -55,10 +55,9 @@ def serve():
 def build():
     clean()
     for src in Path('site').rglob('*?.*'):
-        dest = Path('build') / src.relative_to('site')
-        print dest
-        copy_or_generate(src, dest)
-
+        dest_dir = Path('build') / src.relative_to('site').parent
+        dest_file = copy_or_generate(src, dest_dir)
+        print dest_file
 
 @task
 def clean():
@@ -149,13 +148,15 @@ def render_jade(template_code, data):
         data)
 
 
-def copy_or_generate(src, dest):
+def copy_or_generate(src, dest_dir):
     import shutil
-    if not dest.exists():
-        dest.parent.mkdir(parents=True, exist_ok=True)
+    if not dest_dir.exists():
+        dest_dir.mkdir(parents=True, exist_ok=True)
     if src.suffix in FORMATS:
-        dest = dest.parent / (dest.stem + '.html')
+        dest = dest_dir / (src.stem + '.html')
         with dest.open('w') as fp:
             fp.write(generate(src))
+        return dest
     else:
-        shutil.copy(str(src), str(dest))
+        shutil.copy(str(src), str(dest_dir))
+        return dest_dir / src.name
