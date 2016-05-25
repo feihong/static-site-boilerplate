@@ -36,6 +36,10 @@ def page(path=''):
     if file_.suffix in PAGE_FORMATS:
         return render_page(file_)
 
+    if file_.suffix == '.scss':
+        bottle.response.content_type = 'text/css'
+        return render_stylesheet(file_)
+
     return bottle.static_file(path, root='site')
 
 
@@ -152,6 +156,11 @@ def render_jade(template_code, data):
     return render(
         preamble + '\n<%inherit file="base.html" />\n' + body,
         data)
+
+
+def render_stylesheet(path):
+    import sass
+    return sass.compile(filename=str(path))
 
 
 def copy_or_generate(src, dest_dir):
