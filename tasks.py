@@ -1,4 +1,4 @@
-import os.path as op
+import os
 import re
 from pathlib2 import Path
 import shutil
@@ -6,6 +6,7 @@ from mako.template import Template
 from mako.lookup import TemplateLookup
 import bottle
 from invoke import run, task
+import stylus
 from filters import markdown, rst
 
 
@@ -14,8 +15,14 @@ IMPORTS = [
     'from filters import markdown, rst'
 ]
 PAGE_FORMATS = ('.html', '.rst', '.md', '.jade')
+NODE_PATH = '/usr/local/lib/node_modules'
 
+# Set up lookup directories for Mako.
 lookup = TemplateLookup(directories=['templates'])
+
+# Set up Stylus compiler.
+os.environ['NODE_PATH'] = NODE_PATH
+stylus_compiler = stylus.Stylus()
 
 bottle.debug(True)
 app = bottle.Bottle()
@@ -37,7 +44,7 @@ def page(path=''):
     if file_.suffix in PAGE_FORMATS:
         return render_page(file_)
 
-    if file_.suffix == '.scss':
+    if file_.suffix == '.styl':
         bottle.response.content_type = 'text/css'
         return render_stylesheet(file_)
 
@@ -66,7 +73,7 @@ def build():
 
 @task
 def clean():
-    if op.isdir('build'):
+    if Path('build').is_dir():
         run('rm -rf build/*')
 
 
@@ -87,7 +94,7 @@ def get_file(path):
             return index_file
 
     if filepath.suffix == '.css':
-        style_file = filepath.parent / (filepath.stem + '.scss')
+        style_file = filepath.parent / (filepath.stem + '.styl')
         if style_file.exists():
             return style_file
 
@@ -160,8 +167,8 @@ def render_jade(template_code, data):
 
 
 def render_stylesheet(path):
-    import sass
-    return sass.compile(filename=str(path))
+    source = path.read_text()
+    return stylus_compiler.compile(source)
 
 
 def copy_or_generate(src, dest_dir):
