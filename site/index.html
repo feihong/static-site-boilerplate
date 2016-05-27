@@ -3,16 +3,27 @@ title: Home
 ===
 <%inherit file='base.html' />
 
-<%block filter="rst">
-**This** was rendered using `reStructuredText <https://en.wikipedia.org/wiki/ReStructuredText>`_.
+<%block filter='markdown'>
+Welcome to my static site generator boilerplate demo!
+
+GitHub page: [https://github.com/feihong/static-site-boilerplate](https://github.com/feihong/static-site-boilerplate)
+
+Technologies used in this demo:
+
+<%
+
+techs = [
+  'Markdown https://en.wikipedia.org/wiki/Markdown',
+  'reStructuredText https://en.wikipedia.org/wiki/ReStructuredText',
+  'Jade http://jade-lang.com/',
+  'Stylus http://stylus-lang.com/',
+]
+
+%>
+
+% for name, link in (item.split(' ') for item in techs):
+  - [${name}](${link})
+% endfor
 </%block>
 
-<%block filter="markdown">
-**This** was rendered using [Markdown](https://en.wikipedia.org/wiki/Markdown).
-</%block>
-
-<%block filter="markdown">
-Synth organic brooklyn, meh master cleanse microdosing cronut vegan church-key. Pitchfork health goth beard banh mi 90's, locavore venmo pug tilde pop-up. YOLO you probably haven't heard of them heirloom gentrify sustainable. Meditation retro bushwick cliche hashtag raw denim, hella blog kickstarter kombucha PBR&B meggings. Selvage tacos truffaut, taxidermy beard occupy bitters mumblecore. Distillery celiac retro tofu church-key banh mi, organic fingerstache mumblecore typewriter listicle single-origin coffee ethical cliche. Cronut street art four dollar toast kitsch four loko umami.
-
-Mumblecore YOLO pork belly, seitan semiotics pug hammock paleo scenester authentic meditation tacos tumblr small batch bitters. IPhone yr cliche godard, fap celiac williamsburg heirloom cold-pressed. Photo booth church-key small batch roof party chillwave, meggings normcore raw denim shoreditch listicle irony neutra ethical pinterest. Listicle dreamcatcher pork belly locavore. Affogato church-key godard selvage, YOLO brooklyn food truck try-hard. Tofu cred direct trade, offal art party hashtag typewriter hella XOXO brooklyn tattooed. Chia aesthetic butcher fap, pickled PBR&B mlkshk cold-pressed DIY banh mi gastropub affogato chambray kitsch next level.
-</%block>
+<p style='font-size: 0.7em; color: gray;'>The above section was written in <a href=''>Markdown</a>.</p>
