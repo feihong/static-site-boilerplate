@@ -1,0 +1,12 @@
+.declarations .warning {
+  background-color: #f08080;
+}
+.declarations .info {
+  background-color: #e6e6fa;
+}
+.declarations .tip {
+  background-color: #98fb98;
+}
+span.highlight {
+  background-color: #fffacd;
+}
