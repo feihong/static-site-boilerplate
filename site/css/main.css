@@ -2,6 +2,16 @@
 
 footer { padding-bottom: 20px; }
 
+body {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+ }
+
+ main {
+   flex: 1 0 auto;
+ }
+
 /*
 Code Highlighting
 Source: https://github.com/richleland/pygments-css/
