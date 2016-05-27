@@ -1,4 +1,10 @@
 title: Home
+technologies:
+- Mako http://www.makotemplates.org/
+- Markdown https://en.wikipedia.org/wiki/Markdown
+- reStructuredText https://en.wikipedia.org/wiki/ReStructuredText
+- Jade http://jade-lang.com/
+- Stylus http://stylus-lang.com/
 
 ===
 <%inherit file='base.html' />
@@ -10,18 +16,7 @@ GitHub page: <https://github.com/feihong/static-site-boilerplate>
 
 Technologies used in this demo:
 
-<%
-
-techs = [
-  'Markdown https://en.wikipedia.org/wiki/Markdown',
-  'reStructuredText https://en.wikipedia.org/wiki/ReStructuredText',
-  'Jade http://jade-lang.com/',
-  'Stylus http://stylus-lang.com/',
-]
-
-%>
-
-% for name, link in (item.split(' ') for item in techs):
+% for name, link in (item.split(' ') for item in technologies):
   - [${name}](${link})
 % endfor
 </%block>

@@ -4,6 +4,8 @@ title: ReStructuredText
 
 .. This is a comment! It will not show up in the rendered markup.
 
+This page was written in `reStructuredText <https://en.wikipedia.org/wiki/ReStructuredText>`_.
+
 Basics
 ------
 

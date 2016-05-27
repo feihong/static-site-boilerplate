@@ -6,13 +6,13 @@
 <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
 <meta http-equiv='x-ua-compatible' content='ie=edge'>
 <title>${title}</title>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css'>
 <link rel='stylesheet' href='${site}css/main.css'>
 <%block name='extrahead'></%block>
 </head>
 <body>
 
-<div class='ui main text container'>
+<div class='container'>
   <%helper:menu slug='${slug}'>
     Home: /
     Markdown: markdown/
@@ -25,11 +25,11 @@
   ${next.body()}
 
   <div class='footer'>
-    Content licensed under <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>.
-</p>
+    Content licensed under <a href='http://creativecommons.org/licenses/by/4.0/'>Creative Commons Attribution 4.0</a>.
   </div>
 </div>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.js'></script>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js'></script>
 </body>
 </html>
