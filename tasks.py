@@ -181,7 +181,7 @@ def copy_or_generate(src, dest_dir):
             fp.write(render_page(src))
         return dest
 
-    if src.suffix == '.scss':
+    if src.suffix == '.styl':
         dest = dest_dir / (src.stem + '.css')
         with dest.open('w') as fp:
             fp.write(render_stylesheet(src))
