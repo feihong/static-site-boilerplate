@@ -4,17 +4,16 @@
     body = capture(caller.body).strip()
     pairs = [line.split(':') for line in body.splitlines()]
   %>
-  <div class='ui menu'>
+  <ul class='right hide-on-med-and-down'>
   % for title, link in pairs:
     <%
       link = link.strip()
       if link == '/':
         link = ''
     %>
-    <a class='item'
-       href='${site}${link}'>
-       ${title}
-    </a>
+    <li>
+      <a href='${site}${link}'>${title}</a>
+    </li>
   % endfor
-  </div>
+  </ul>
 </%def>
