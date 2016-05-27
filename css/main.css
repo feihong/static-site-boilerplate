@@ -1,10 +1,16 @@
-.ui.main { margin-top: 1em; }
+.nav-title { font-size: 1.7em; }
 
-.footer {
-  font-size: 0.9em;
-  text-align: center;
-  margin-top: 2em;
-}
+footer { padding-bottom: 20px; }
+
+body {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+ }
+
+ main {
+   flex: 1 0 auto;
+ }
 
 /*
 Code Highlighting
