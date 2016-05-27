@@ -1,10 +1,6 @@
 .nav-title { font-size: 1.7em; }
 
-.footer {
-  font-size: 0.9em;
-  text-align: center;
-  margin-top: 2em;
-}
+footer { padding-bottom: 20px; }
 
 /*
 Code Highlighting

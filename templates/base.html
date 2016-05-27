@@ -13,27 +13,31 @@
 </head>
 <body>
 <!-- content -->
-<nav>
-  <div class='nav-wrapper container'>
-    <a class='nav-title' href='${site}'>Static Site Boilerplate</a>
-    <%helper:menu slug='${slug}'>
-      Jade: jade-examples/
-      Stylus: stylus-examples/
-      Materialize: materialize-examples/
-      Markdown: markdown/
-      ReST: rest/
-    </%helper:menu>
-  </div>
-</nav>
+<header>
+  <nav>
+    <div class='nav-wrapper container'>
+      <a class='nav-title' href='${site}'>Static Site Boilerplate</a>
+      <%helper:menu slug='${slug}'>
+        Jade: jade-examples/
+        Stylus: stylus-examples/
+        Materialize: materialize-examples/
+        Markdown: markdown/
+        ReST: rest/
+      </%helper:menu>
+    </div>
+  </nav>
+</header>
 
 <main class='container'>
   <h1>${title}</h1>
   ${next.body()}
 </main>
 
-<div class='footer'>
-  Content licensed under <a href='http://creativecommons.org/licenses/by/4.0/'>Creative Commons Attribution 4.0</a>.
-</div>
+<footer class='page-footer'>
+  <div class='container white-text'>
+    Content licensed under <a class='red-text text-lighten-4' href='http://creativecommons.org/licenses/by/4.0/'>Creative Commons Attribution 4.0</a>.
+  </div>
+</footer>
 
 <!-- scripts -->
 <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
