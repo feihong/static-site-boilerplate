@@ -73,9 +73,9 @@ Directives
      following.
    - It includes this bullet list.
 
-.. note: Beavers were parachuted to the site without incident.
+.. note:: Beavers were parachuted to the site without incident.
 
-.. image:: http://i.giphy.com/xj3Ie4rLNuLSM.gif
+.. image:: http://67.media.tumblr.com/71313cc8d41737c0ec31d957fe9dfb61/tumblr_mi2on7vxWZ1rvuj8do1_500.png
 
 Code blocks
 -----------
@@ -91,9 +91,22 @@ Code blocks
 
 .. code:: python
 
-  def my_function():
-      "just a test"
-      print 8/2
+  @app.route(SITE)
+  @app.route(SITE + '<path:path>')
+  def page(path=''):
+      file_ = get_file(path)
+      if file_ is None:
+          with open('site/404.html') as fp:
+              return fp.read()
+
+      if file_.suffix in PAGE_FORMATS:
+          return render_page(file_)
+
+      if file_.suffix == '.styl':
+          bottle.response.content_type = 'text/css'
+          return render_stylesheet(file_)
+
+      return bottle.static_file(path, root='site')
 
 .. [#] HTTP GET is a type of web request that is used for retrieving data from a server.
 .. [#] JSON stands for JavaScript Object Notation.
