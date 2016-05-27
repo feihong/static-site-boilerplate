@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+<meta http-equiv='x-ua-compatible' content='ie=edge'>
+<title>Markdown</title>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css'>
+<link rel='stylesheet' href='/static-site-boilerplate/css/main.css'>
+
+</head>
+<body>
+
+<div class='ui main text container'>
+  
+  
+  <div class='ui menu'>
+    
+    <a class='item'
+       href='/static-site-boilerplate/'>
+       Home
+    </a>
+    
+    <a class='item'
+       href='/static-site-boilerplate/markdown/'>
+           Markdown
+    </a>
+    
+    <a class='item'
+       href='/static-site-boilerplate/rest/'>
+           ReST
+    </a>
+    
+    <a class='item'
+       href='/static-site-boilerplate/jade-examples/'>
+           Jade
+    </a>
+    
+    <a class='item'
+       href='/static-site-boilerplate/stylus-examples/'>
+           Stylus
+    </a>
+  </div>
+
+
+  <h1>Markdown</h1>
+  
+<p>This page was written in <a href="https://daringfireball.net/projects/markdown/">Markdown</a>.</p>
+
+<h2>Fenced code blocks</h2>
+
+<div class="codehilite"><pre><code><span class="nd">@app.route</span><span class="p">(</span><span class="n">SITE</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="n">SITE</span> <span class="o">+</span> <span class="s">&#39;&lt;path:path&gt;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">page</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+    <span class="n">file_</span> <span class="o">=</span> <span class="n">get_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">file_</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;site/404.html&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">file_</span><span class="o">.</span><span class="n">suffix</span> <span class="ow">in</span> <span class="n">PAGE_FORMATS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">render_page</span><span class="p">(</span><span class="n">file_</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">file_</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s">&#39;.styl&#39;</span><span class="p">:</span>
+        <span class="n">bottle</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="s">&#39;text/css&#39;</span>
+        <span class="k">return</span> <span class="n">render_stylesheet</span><span class="p">(</span><span class="n">file_</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">bottle</span><span class="o">.</span><span class="n">static_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="s">&#39;site&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>Blockquote</h2>
+
+<blockquote>
+  <p>每当音乐响起</p>
+  
+  <p>总是身不由己</p>
+  
+  <p>走进梦幻的世界</p>
+  
+  <p>一切变得很神奇</p>
+</blockquote>
+
+<h2>Reference links</h2>
+
+<p>I really like programming in <a href="https://python.org">Python</a>. I'm not a big fan of <a href="https://ruby-lang.org">Ruby</a>, though. I can tell you that <a href="https://python.org">Python</a> never lets me down!</p>
+
+<h2>Images</h2>
+
+<p><img src="http://67.media.tumblr.com/71313cc8d41737c0ec31d957fe9dfb61/tumblr_mi2on7vxWZ1rvuj8do1_500.png" alt="A fun picture I drew" /></p>
+
+<h2>Miscellaneous</h2>
+
+<p>Email address:</p>
+
+<p><a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#x66;i&#x72;&#x73;&#x74;.&#108;a&#x73;&#x74;&#x40;&#97;&#100;&#x64;&#114;&#101;&#x73;&#115;&#x2e;&#99;&#x6f;&#x6d;">&#x66;i&#x72;&#x73;&#x74;.&#108;a&#x73;&#x74;&#x40;&#97;&#100;&#x64;&#114;&#101;&#x73;&#115;&#x2e;&#99;&#x6f;&#x6d;</a> (view the source to see that address is entity-encoded)</p>
+
+<p>Horizontal rule:</p>
+
+<hr />
+
+<p>Line breaks:</p>
+
+<p>Awkward at weddings <br />
+Godzilla only came for <br />
+The free food and drinks</p>
+
+<div style='font-size: 0.7em; color: gray'>Source: <a href='http://godzillahaiku.tumblr.com/post/625840712/72'>Godzilla Haiku</a></div>
+
+
+  <div class='footer'>
+    Content licensed under <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>.
+</p>
+  </div>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.js'></script>
+</body>
+</html>

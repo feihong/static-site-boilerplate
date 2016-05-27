@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+<meta http-equiv='x-ua-compatible' content='ie=edge'>
+<title>ReStructuredText</title>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css'>
+<link rel='stylesheet' href='/static-site-boilerplate/css/main.css'>
+
+</head>
+<body>
+
+<div class='ui main text container'>
+  
+  
+  <div class='ui menu'>
+    
+    <a class='item'
+       href='/static-site-boilerplate/'>
+       Home
+    </a>
+    
+    <a class='item'
+       href='/static-site-boilerplate/markdown/'>
+           Markdown
+    </a>
+    
+    <a class='item'
+       href='/static-site-boilerplate/rest/'>
+           ReST
+    </a>
+    
+    <a class='item'
+       href='/static-site-boilerplate/jade-examples/'>
+           Jade
+    </a>
+    
+    <a class='item'
+       href='/static-site-boilerplate/stylus-examples/'>
+           Stylus
+    </a>
+  </div>
+
+
+  <h1>ReStructuredText</h1>
+  
+
+<!-- This is a comment! It will not show up in the rendered markup. -->
+<div class="section" id="basics">
+<h2>Basics</h2>
+<ul class="simple">
+<li><em>emphasis</em></li>
+<li><strong>boldface</strong></li>
+<li><tt class="docutils literal">code samples</tt></li>
+<li>Subscript: H<sub>2</sub>O</li>
+<li>Superscript: E = mc<sup>2</sup></li>
+</ul>
+<ol class="arabic simple">
+<li>This is <a class="reference external" href="http://sphinx-doc.org/rest.html">a reStructuredText primer</a>.</li>
+<li>This is a <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">quickstart guide</a> from the official site.</li>
+</ol>
+<p>Let's try an <a class="reference external" href="http://www.theguardian.com/us-news/2015/oct/22/idaho-historic-footage-parachuting-beavers">anonymous link</a>, shall we?</p>
+<p>But maybe push our luck and do <a class="reference external" href="http://boingboing.net/2015/10/21/mcdonalds-china-debuts-a-cem.html?utm_source=moreatbb&amp;utm_medium=nextpost&amp;utm_campaign=nextpostthumbnails">another one</a> to see what happens.</p>
+</div>
+<div class="section" id="substitution">
+<h2>Substitution</h2>
+<p>I am 飞鸿. My name is 飞鸿. Don't pay attention to 飞鸿.</p>
+</div>
+<div class="section" id="definition-list">
+<h2>Definition list</h2>
+<dl class="docutils">
+<dt>学海无涯</dt>
+<dd><p class="first">sea of learning, no horizon (idiom)</p>
+<p>no limits to what one still has to learn</p>
+<p class="last">ars longa, vita brevis</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="quoted-paragraph">
+<h2>Quoted paragraph</h2>
+<blockquote>
+云梦城之谜》带你穿梭明朝弄臣历史：开场悬疑，云梦泽凶案后，十年来朝中多次派人进入云梦泽搜索古城，每次都无功而返，古城就像消失了……清楚整件事来龙去脉者，只有五个半，五个人分别是皇上、权倾朝中的凤公公、厂卫第一高手季聂提、「御前猎手」辜月明，湖广布政史司钱世臣。另外半个，则是人称「道家行者」的戈墨，此人道法高明，有捉鬼驱魔的特殊本领。与辜月明更是势不两立。辜明月奉命要拿回楚盒与夫勐人头，他究竟能否解开云梦城消失之谜？解开自己害怕战争这无可告人的心结？千年前到底发生了什么事？为什么他们都曾像置身其中？而在千年后彼此纠缠不休。寻找真相的前路步步凶险，他能揭开整件事是鬼神之力亦或是政治之谜？</blockquote>
+</div>
+<div class="section" id="line-blocks">
+<h2>Line blocks</h2>
+<div class="line-block">
+<div class="line">Your bulge draws my eye</div>
+<div class="line">And now it is too awkward</div>
+<div class="line">To look at your face</div>
+</div>
+</div>
+<div class="section" id="footnotes">
+<h2>Footnotes</h2>
+<p>An HTTP GET request <a class="footnote-reference" href="#id5" id="id3">[1]</a> is made to the URL.</p>
+<p>The result you get back is not plain text—rather, it is JSON <a class="footnote-reference" href="#id6" id="id4">[2]</a>.</p>
+</div>
+<div class="section" id="directives">
+<h2>Directives</h2>
+<div class="tip">
+<p class="first admonition-title">Tip</p>
+<p>Floss every day.
+It is not enough to just brush!</p>
+<ul class="last simple">
+<li>The note contains all indented body elements
+following.</li>
+<li>It includes this bullet list.</li>
+</ul>
+</div>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">Beavers were parachuted to the site without incident.</p>
+</div>
+<img alt="http://67.media.tumblr.com/71313cc8d41737c0ec31d957fe9dfb61/tumblr_mi2on7vxWZ1rvuj8do1_500.png" src="http://67.media.tumblr.com/71313cc8d41737c0ec31d957fe9dfb61/tumblr_mi2on7vxWZ1rvuj8do1_500.png" />
+</div>
+<div class="section" id="code-blocks">
+<h2>Code blocks</h2>
+<pre class="code literal-block">
+brew update
+brew install rbenv
+
+rbenv init
+rbenv install -l    # see what versions there are
+rbven global 2.2.3
+</pre>
+<pre class="code python literal-block">
+<span class="name decorator">&#64;app.route</span><span class="punctuation">(</span><span class="name">SITE</span><span class="punctuation">)</span>
+<span class="name decorator">&#64;app.route</span><span class="punctuation">(</span><span class="name">SITE</span> <span class="operator">+</span> <span class="literal string">'&lt;path:path&gt;'</span><span class="punctuation">)</span>
+<span class="keyword">def</span> <span class="name function">page</span><span class="punctuation">(</span><span class="name">path</span><span class="operator">=</span><span class="literal string">''</span><span class="punctuation">):</span>
+    <span class="name">file_</span> <span class="operator">=</span> <span class="name">get_file</span><span class="punctuation">(</span><span class="name">path</span><span class="punctuation">)</span>
+    <span class="keyword">if</span> <span class="name">file_</span> <span class="operator word">is</span> <span class="name builtin pseudo">None</span><span class="punctuation">:</span>
+        <span class="keyword">with</span> <span class="name builtin">open</span><span class="punctuation">(</span><span class="literal string">'site/404.html'</span><span class="punctuation">)</span> <span class="keyword">as</span> <span class="name">fp</span><span class="punctuation">:</span>
+            <span class="keyword">return</span> <span class="name">fp</span><span class="operator">.</span><span class="name">read</span><span class="punctuation">()</span>
+
+    <span class="keyword">if</span> <span class="name">file_</span><span class="operator">.</span><span class="name">suffix</span> <span class="operator word">in</span> <span class="name">PAGE_FORMATS</span><span class="punctuation">:</span>
+        <span class="keyword">return</span> <span class="name">render_page</span><span class="punctuation">(</span><span class="name">file_</span><span class="punctuation">)</span>
+
+    <span class="keyword">if</span> <span class="name">file_</span><span class="operator">.</span><span class="name">suffix</span> <span class="operator">==</span> <span class="literal string">'.styl'</span><span class="punctuation">:</span>
+        <span class="name">bottle</span><span class="operator">.</span><span class="name">response</span><span class="operator">.</span><span class="name">content_type</span> <span class="operator">=</span> <span class="literal string">'text/css'</span>
+        <span class="keyword">return</span> <span class="name">render_stylesheet</span><span class="punctuation">(</span><span class="name">file_</span><span class="punctuation">)</span>
+
+    <span class="keyword">return</span> <span class="name">bottle</span><span class="operator">.</span><span class="name">static_file</span><span class="punctuation">(</span><span class="name">path</span><span class="punctuation">,</span> <span class="name">root</span><span class="operator">=</span><span class="literal string">'site'</span><span class="punctuation">)</span>
+</pre>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[1]</a></td><td>HTTP GET is a type of web request that is used for retrieving data from a server.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td>JSON stands for JavaScript Object Notation.</td></tr>
+</tbody>
+</table>
+</div>
+
+
+  <div class='footer'>
+    Content licensed under <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>.
+</p>
+  </div>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.js'></script>
+</body>
+</html>
