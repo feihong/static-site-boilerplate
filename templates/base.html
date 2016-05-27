@@ -16,7 +16,10 @@
 <header>
   <nav>
     <div class='nav-wrapper container'>
-      <a class='nav-title' href='${site}'>Static Site Boilerplate</a>
+      <a class='brand-logo' href='${site}'>Static Site Boilerplate</a>
+      <a class='button-collapse' href='#' data-activates='mobile-nav-links'>
+        <i class='material-icons'>menu</i>
+      </a>
       <%helper:menu slug='${slug}'>
         Jade: jade-examples/
         Stylus: stylus-examples/
@@ -42,5 +45,6 @@
 <!-- scripts -->
 <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js'></script>
+<script src='${site}js/main.js'></script>
 </body>
 </html>
