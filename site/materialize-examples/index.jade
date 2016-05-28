@@ -25,10 +25,12 @@ colors:
 block extrahead
   link(rel='stylesheet', href='styles.css')
 
-h2 Colors
+h3 Colors
 
 div.row
   each color in colors
     div(class='col s12 m4 l3')
       - classes = ['color', 'center', color]
+      if color in ('black', 'indigo', 'purple', 'deep-purple', 'brown')
+        - classes.append('white-text')
       div(class=classes)= color
