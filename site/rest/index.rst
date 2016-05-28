@@ -1,4 +1,4 @@
-title: ReStructuredText
+title: ReStructuredText Examples
 
 ===
 
@@ -78,6 +78,7 @@ Directives
 .. note:: Beavers were parachuted to the site without incident.
 
 .. image:: http://67.media.tumblr.com/71313cc8d41737c0ec31d957fe9dfb61/tumblr_mi2on7vxWZ1rvuj8do1_500.png
+   :class: responsive-img
 
 Code blocks
 -----------
