@@ -147,6 +147,7 @@ def render_page(path):
         html = markdown(content)
         return render('<%inherit file="base.html" />\n' + html, data)
 
+    # It's just a plan Mako template, so just return the rendered results.
     return content
 
 
@@ -158,12 +159,7 @@ def render(template_code, data):
 def render_jade(template_code, data):
     from pyjade.ext.mako import preprocessor
     mako_code = preprocessor(template_code)
-    index = mako_code.index('%>') + 2
-    preamble = mako_code[:index]
-    body = mako_code[index:]
-    return render(
-        preamble + '\n<%inherit file="base.html" />\n' + body,
-        data)
+    return render(mako_code, data)
 
 
 def render_stylesheet(path):

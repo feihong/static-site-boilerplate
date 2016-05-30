@@ -34,7 +34,7 @@ On Mac (assuming you have Homebrew):
 brew install node
 ```
 
-On Linux, you can run something this (you may need to change the version number to the latest):
+On Linux, you can run something like this (you may want to change the 6.2.0 to whatever the latest version number is):
 
 ```
 wget -O nodejs.tar.xz https://nodejs.org/dist/v6.2.0/node-v6.2.0-linux-x64.tar.xz
