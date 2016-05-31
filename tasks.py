@@ -1,7 +1,8 @@
 import os
 import re
-from pathlib2 import Path
 import shutil
+import subprocess
+from pathlib2 import Path
 from mako.template import Template
 from mako.lookup import TemplateLookup
 import bottle
@@ -47,6 +48,10 @@ def page(path=''):
     if file_.suffix == '.styl':
         bottle.response.content_type = 'text/css'
         return render_stylesheet(file_)
+
+    if file_.suffix == '.coffee':
+        bottle.response.content_type = 'text/javascript'
+        return compile_coffeescript(file_)
 
     return bottle.static_file(path, root='site')
 
@@ -97,6 +102,11 @@ def get_file(path):
         style_file = filepath.parent / (filepath.stem + '.styl')
         if style_file.exists():
             return style_file
+
+    if filepath.suffix == '.js':
+        coffee_file = filepath.parent / (filepath.stem + '.coffee')
+        if coffee_file.exists():
+            return coffee_file
 
     return None
 
@@ -165,6 +175,11 @@ def render_jade(template_code, data):
 def render_stylesheet(path):
     source = path.read_text()
     return stylus_compiler.compile(source)
+
+
+def compile_coffeescript(path):
+    cmd = ['coffee', '-c', '-p', str(path)]
+    return subprocess.check_output(cmd)
 
 
 def copy_or_generate(src, dest_dir):
