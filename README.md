@@ -24,7 +24,7 @@ There is a minor amount of configuration you'll have to do inside `tasks.py`. At
 | `inv build` | Build the site |
 | `inv publish` | Publish the site to GitHub Pages |
 
-## Install Stylus support
+## Install Stylus and CoffeeScript support
 
 If you want to use Stylus, you must first install Node.js.
 
@@ -41,8 +41,8 @@ wget -O nodejs.tar.xz https://nodejs.org/dist/v6.2.0/node-v6.2.0-linux-x64.tar.x
 sudo tar -C /usr/local --strip-components 1 -xJf nodejs.tar.xz
 ```
 
-Once Node.js has been installed, run this to install Stylus:
+Once Node.js has been installed, you can use npm to install the CoffeeScript and Stylus packages:
 
 ```
-npm install stylus -g
+npm install -g stylus coffee-script
 ```
